@@ -4,7 +4,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
 
-const Item = ({device, status, type, handleNavigate}) => (
+const ItemDevice = ({device, status, type, handleNavigate}) => (
   <TouchableOpacity
     style={{
       height: 120,
@@ -66,11 +66,40 @@ const Item = ({device, status, type, handleNavigate}) => (
   </TouchableOpacity>
 );
 
+const ItemAddDevice = ({navigation}) => {
+  return(
+    <TouchableOpacity
+      style={{
+        height: 120,
+        width: '45%',
+        justifyContent:'center',
+        alignItems:'center',
+        marginRight: 33,
+        backgroundColor: 'white',
+        shadowColor: '#000',
+        shadowOffset: {
+          width: 0,
+          height: 3,
+        },
+        shadowOpacity: 0.27,
+        shadowRadius: 4.65,
+        elevation: 6,
+        borderRadius: 5,
+      }}
+      onPress={() => navigation.navigate('AddDevice')}
+      >
+      <AntDesign name={'pluscircleo'} style={{fontSize:80,color:'#0E4DA4'}}/>
+    </TouchableOpacity>
+  )
+}
+
 export const Home = ({navigation}) => {
   const [selectedValue, setSelectedValue] = useState('Phòng ngủ');
 
-  const renderItem = ({item}) => (
-    <Item
+  const renderItem = ({item,index}) => (
+    index > DATA.length - 1 ?
+      <ItemAddDevice navigation={navigation}/>
+     : <ItemDevice
       device={item?.device}
       status={item?.status}
       type={item.type}
@@ -78,13 +107,13 @@ export const Home = ({navigation}) => {
         item?.type === 'air'
           ? () => navigation.navigate('AirDevice', {nameDevice: item?.device})
           : () =>
-              navigation.navigate('SwitchDevice', {nameDevice: item?.device})
+            navigation.navigate('SwitchDevice', {nameDevice: item?.device})
       }
     />
   );
 
   return (
-    <View style={{flex: 1, backgroundColor: '#F0F0F0'}}>
+    <View style={{flex: 1}}>
       {/*Header*/}
       <View style={{marginHorizontal: 10}}>
         <View
@@ -110,7 +139,7 @@ export const Home = ({navigation}) => {
           style={{marginTop: 30}}
           numColumns={2}
           columnWrapperStyle={{marginBottom: 20}}
-          data={DATA}
+          data={[...DATA,'item']}
           renderItem={renderItem}
           keyExtractor={item => item.id}
         />
@@ -140,5 +169,12 @@ const DATA = [
     type: 'air',
     device: 'Điều hòa 1',
     status: 1,
+  },
+  {
+    id: 4,
+    room: 'bedroom',
+    type: 'air',
+    device: 'Điều hòa 2',
+    status: 0,
   },
 ];
