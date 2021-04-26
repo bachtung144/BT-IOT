@@ -2,16 +2,19 @@ import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
-    height: '9%',
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    justifyContent: 'space-between',
-    paddingHorizontal: 5,
-    borderBottomWidth: 0.5,
-    borderColor: 'gray',
+    flex: 1,
+    flexDirection: 'column',
   },
-  icoGoBack: {fontSize: 50, color: '#0E4DA4'},
-  title: {fontSize: 30, fontWeight: 'bold'},
-  icoEdit: {fontSize: 40},
+  image: {
+    flex: 1,
+    resizeMode: 'cover',
+    justifyContent: 'center',
+  },
+  text: {
+    color: 'white',
+    fontSize: 42,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    backgroundColor: '#000000a0',
+  },
 });

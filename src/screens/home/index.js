@@ -3,6 +3,7 @@ import {View, Text, Picker, FlatList, TouchableOpacity} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
+import {styles} from "./style";
 
 const ItemDevice = ({device, status, type, handleNavigate}) => (
   <TouchableOpacity
@@ -117,14 +118,7 @@ export const Home = ({navigation}) => {
       {/*Header*/}
       <View style={{marginHorizontal: 10}}>
         <View
-          style={{
-            borderWidth: 1,
-            height: 50,
-            width: 150,
-            alignSelf: 'flex-end',
-            marginTop: 20,
-            backgroundColor: 'white',
-          }}>
+          style={styles.ctnPicker}>
           <Picker
             selectedValue={selectedValue}
             onValueChange={(itemValue, itemIndex) =>

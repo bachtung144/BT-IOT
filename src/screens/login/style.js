@@ -1,17 +1,8 @@
 import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
-  container: {
-    height: '9%',
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    justifyContent: 'space-between',
-    paddingHorizontal: 5,
-    borderBottomWidth: 0.5,
-    borderColor: 'gray',
-  },
-  icoGoBack: {fontSize: 50, color: '#0E4DA4'},
-  title: {fontSize: 30, fontWeight: 'bold'},
-  icoEdit: {fontSize: 40},
+  imgHeader:{width: '100%', height: '30%'},
+  ctnTextInput:{marginHorizontal: 10, marginTop: '20%'},
+  txtInputPhone:{borderWidth: 0.5, borderColor: 'gray', borderRadius: 5},
+  txtInputPass:{borderWidth: 0.5, borderColor: 'gray', borderRadius: 5}
 });

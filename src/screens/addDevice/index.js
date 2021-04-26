@@ -31,7 +31,7 @@ export const AddDevice =() => {
       <View style={{marginTop:50}}>
         <Text style={{fontSize:20}}>Tên thiết bị</Text>
         <TextInput
-          style={{height:50,borderWidth:1,backgroundColor:'#FFFFFF',marginTop: 10}}
+          style={styles.txtInputNameDevice}
         />
       </View>
 
