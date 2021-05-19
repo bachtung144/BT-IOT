@@ -1,9 +1,27 @@
 import React from 'react';
-import {View, Text, Image, TextInput, TouchableOpacity} from 'react-native';
+import {View, Text, Image, TextInput} from 'react-native';
 import {HeaderLogin} from '../../assets';
-import {styles} from "./style";
+import {styles} from './style';
+import {BaseBtn} from '../../components/baseBtn';
+import userApi from '../../service/api/userApi';
 
 export const Login = ({navigation}) => {
+  const handleLogin = async () => {
+    try {
+      let params = {
+        phone: '123456789',
+        password: '1234',
+      };
+      const response = await userApi.login(params);
+      const {token} = response;
+      if (token) {
+        return navigation.navigate('HomeTab');
+      }
+    } catch (error) {
+      console.log('Failed to login: ', error);
+    }
+  };
+
   return (
     <View style={{flex: 1}}>
       <Image source={HeaderLogin} style={styles.imgHeader} />
@@ -19,28 +37,11 @@ export const Login = ({navigation}) => {
 
         <View>
           <Text style={{marginBottom: 10}}>Mật khẩu</Text>
-          <TextInput
-            style={styles.txtInputPass}
-            placeholder={'Mật khẩu'}
-          />
+          <TextInput style={styles.txtInputPass} placeholder={'Mật khẩu'} />
         </View>
       </View>
 
-      <TouchableOpacity
-        style={{
-          height: 60,
-          backgroundColor: '#65AAEA',
-          marginHorizontal: 10,
-          marginTop: '30%',
-          borderRadius: 30,
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-        onPress={() => navigation.navigate('HomeTab')}>
-        <Text style={{fontSize: 18, color: '#FFFFFF', fontWeight: 'bold'}}>
-          ĐĂNG NHẬP
-        </Text>
-      </TouchableOpacity>
+      <BaseBtn title={'ĐĂNG NHẬP'} onPress={handleLogin} />
     </View>
   );
 };
