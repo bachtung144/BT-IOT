@@ -2,8 +2,21 @@ import React, {useState} from 'react';
 import {View, Text} from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {ButtonDelete} from '../../components/btnDelete';
+import { _removeItem } from "../../service/storage/removeItem";
+import * as RootNavigation from '../../navigations/RootNavigation'
+import { useDispatch } from "react-redux";
+import { checkToken } from "../../redux/actions/login";
+export const Setting = ({navigation}) => {
+  const dispatch = useDispatch();
 
-export const Setting = () => {
+  const handleLogout =  () => {
+    let check =  _removeItem('token')
+    if (check) {
+      console.warn('log')
+      dispatch(() => checkToken(false))
+    }
+  }
+
   return (
     <View style={{flex: 1}}>
       <View
@@ -54,7 +67,7 @@ export const Setting = () => {
       </View>
 
       <View style={{marginHorizontal: 10}}>
-        <ButtonDelete title={'ĐĂNG XUẤT'} />
+        <ButtonDelete title={'ĐĂNG XUẤT'} onPress={() => handleLogout()}/>
       </View>
     </View>
   );

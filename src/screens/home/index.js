@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
-import {View, Text, Picker, FlatList, TouchableOpacity} from 'react-native';
+import {View, Text, Picker, FlatList, TouchableOpacity,Button} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
 import {styles} from "./style";
+import { checkToken } from "../../redux/actions/login";
+import { useDispatch } from "react-redux";
 
 const ItemDevice = ({device, status, type, handleNavigate}) => (
   <TouchableOpacity
@@ -95,6 +97,7 @@ const ItemAddDevice = ({navigation}) => {
 }
 
 export const Home = ({navigation}) => {
+  const dispatch = useDispatch();
   const [selectedValue, setSelectedValue] = useState('Phòng ngủ');
 
   const renderItem = ({item,index}) => (
@@ -138,6 +141,7 @@ export const Home = ({navigation}) => {
           keyExtractor={item => item.id}
         />
       </View>
+      <Button title={'abc'} onPress={() => dispatch(() => checkToken(false))}/>
     </View>
   );
 };
