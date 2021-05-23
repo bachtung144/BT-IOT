@@ -8,11 +8,11 @@ const MainStack = createStackNavigator();
 export const MainNavigator = ({navigation}) => {
   return (
     <MainStack.Navigator>
-      <MainStack.Screen
-        name={'Login'}
-        component={Login}
-        options={{headerShown: false}}
-      />
+      {/*<MainStack.Screen*/}
+      {/*  name={'Login'}*/}
+      {/*  component={Login}*/}
+      {/*  options={{headerShown: false}}*/}
+      {/*/>*/}
       <MainStack.Screen
         name={'HomeTab'}
         component={HomeTab}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {View, Text, Image, TextInput} from 'react-native';
 import {HeaderLogin} from '../../assets';
 import {styles} from './style';
@@ -6,11 +6,14 @@ import {BaseBtn} from '../../components/baseBtn';
 import userApi from '../../service/api/userApi';
 
 export const Login = ({navigation}) => {
+  const [phone, setPhone] = useState('')
+  const [password,setPassword] = useState('')
+
   const handleLogin = async () => {
     try {
       let params = {
-        phone: '123456789',
-        password: '1234',
+        phone: phone,
+        password: password,
       };
       const response = await userApi.login(params);
       const {token} = response;
@@ -32,12 +35,19 @@ export const Login = ({navigation}) => {
           <TextInput
             style={styles.txtInputPhone}
             placeholder={'Số điện thoại'}
+            keyboardType={'numeric'}
+            onChangeText={setPhone}
           />
         </View>
 
         <View>
           <Text style={{marginBottom: 10}}>Mật khẩu</Text>
-          <TextInput style={styles.txtInputPass} placeholder={'Mật khẩu'} />
+          <TextInput
+              style={styles.txtInputPass}
+              placeholder={'Mật khẩu'}
+              onChangeText={setPassword}
+              secureTextEntry={true}
+          />
         </View>
       </View>
 
