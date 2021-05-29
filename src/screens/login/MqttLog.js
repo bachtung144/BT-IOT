@@ -15,20 +15,5 @@ export default function prgMqtt(onConnect, onConnectionLost, onMessageArrived) {
     prgMqtt.client.onConnectionLost = onConnectionLost;
     prgMqtt.client.onMessageArrived = onMessageArrived;
     prgMqtt.client.connect({ onSuccess:onConnect, useSSL: false });
-
 }
 
-function onConnect() {
-    prgMqtt.client.subscribe('WORLD');
-    console.log("onConnect");
-}
-
-function onConnectionLost(responseObject) {
-    if (responseObject.errorCode !== 0) {
-        console.log("onConnectionLost:"+responseObject.errorMessage);
-    }
-}
-
-function onMessageArrived(message) {
-    console.log("onMessageArrived:"+message.payloadString);
-}
