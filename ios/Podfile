@@ -12,6 +12,8 @@ target 'BT_IOT' do
     :hermes_enabled => false
   )
 
+  pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
+
   target 'BT_IOTTests' do
     inherit! :complete
     # Pods for testing

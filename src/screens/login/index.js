@@ -1,9 +1,10 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import {View, Text, Image, TextInput} from 'react-native';
 import {HeaderLogin} from '../../assets';
 import {styles} from './style';
 import {BaseBtn} from '../../components/baseBtn';
 import userApi from '../../service/api/userApi';
+import prgMqtt from "./MqttLog";
 
 export const Login = ({navigation}) => {
   const [phone, setPhone] = useState('')
@@ -24,6 +25,10 @@ export const Login = ({navigation}) => {
       console.log('Failed to login: ', error);
     }
   };
+
+  useEffect(() => {
+    prgMqtt()
+  },[])
 
   return (
     <View style={{flex: 1}}>
@@ -51,7 +56,7 @@ export const Login = ({navigation}) => {
         </View>
       </View>
 
-      <BaseBtn title={'ĐĂNG NHẬP'} onPress={handleLogin} />
+      <BaseBtn onPress={() => prgMqtt.client.publish('WORLD','hello')} title={'test'}/>
     </View>
   );
 };
