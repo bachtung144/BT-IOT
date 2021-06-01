@@ -1,13 +1,13 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import {View, Text, Picker, FlatList, TouchableOpacity ,ActivityIndicator,Button} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {styles} from "./style";
 import {ItemDevice} from "../../components/itemDevice";
 import {ItemAddDevice} from "../../components/itemAddDevice";
-import MqttService from "../../core/services/MqttService";
-import OfflineNotification from "../../core/components/OfflineNotification";
+import OfflineNotification from "../../components/OfflineNotification";
 import userApi from "../../service/api/userApi";
 import listRoomApi from "../../service/api/listRoomApi";
+import prgMqtt from "../../service/mqtt/MqttLog";
 
 export const Home = ({navigation}) => {
   const [selectedValue, setSelectedValue] = useState(null);
@@ -24,7 +24,6 @@ export const Home = ({navigation}) => {
       const {rooms} = response
       setListRoom(rooms)
     } catch (error) {
-      console.log('Failed to login: ', error);
       setListRoom(null)
     }
   }
@@ -32,23 +31,19 @@ export const Home = ({navigation}) => {
   useEffect(() => {
     handleListRoom().then(
         () => {
-          MqttService.connectClient(
-              mqttSuccessHandler,
-              mqttConnectionLostHandler,
-          );
+          prgMqtt(mqttSuccessHandler, mqttConnectionLostHandler, onMessageArrived)
         }
     )
   },[])
 
+  const onMessageArrived = (message) => {
+    console.log("onMessageArrived:"+message.payloadString);
+    setListDevice(JSON.parse(message.payloadString))
+  }
+
   const mqttSuccessHandler = () => {
-    console.log('connected to mqtt');
-    MqttService.subscribe('listDevice', msg => {
-      console.warn(msg)
-      setListDevice(JSON.parse(msg))
-    });
-    setIsConnected(true)
-    if (selectedValue === null)
-      MqttService.publishMessage('getListDevice', JSON.stringify({idRoom:listRoom[0]?._id}))
+      setIsConnected(true)
+      prgMqtt.client.subscribe('listDevice');
   };
 
   const mqttConnectionLostHandler = () => {
@@ -68,13 +63,19 @@ export const Home = ({navigation}) => {
           : () =>
             navigation.navigate('SwitchDevice', {nameDevice: item?.name})
       }
+      onOffHandle={() => prgMqtt.client.publish('controlDevice',
+          JSON.stringify({idRoom:item?.id_room, idDevice: item?._id, status:!item?.status}))
+      }
     />
   );
 
   const onValueChange = (itemValue) => {
-    console.warn(itemValue)
     setSelectedValue(itemValue)
-    MqttService.publishMessage('getListDevice', JSON.stringify({idRoom:itemValue}))
+    prgMqtt.client.publish('getListDevice', JSON.stringify({idRoom:itemValue}))
+  }
+
+  const onOffHandle = () => {
+
   }
 
   return (
@@ -110,9 +111,7 @@ export const Home = ({navigation}) => {
               />
               : <ActivityIndicator size="large" />
         }
-        {/*<Button onPress={() => MqttService.publishMessage('getListDevice',JSON.stringify({*/}
-        {/*  idRoom:'609a47e6b0a865a1dbd45f98'*/}
-        {/*}))} title={'test'}/>*/}
+        <Button title={'test'} onPress={() => prgMqtt.client.publish('getListDevice', JSON.stringify({idRoom:listRoom[0]?._id}))}/>
       </View>
     </View>
   );

@@ -4,7 +4,7 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import Feather from "react-native-vector-icons/Feather";
 import AntDesign from "react-native-vector-icons/AntDesign";
 
-export const ItemDevice = ({device, status, type, handleNavigate}) => (
+export const ItemDevice = ({device, status, type, handleNavigate, onOffHandle}) => (
     <TouchableOpacity
         style={{
             height: 120,
@@ -52,11 +52,13 @@ export const ItemDevice = ({device, status, type, handleNavigate}) => (
                 style={{
                     height: 50,
                     width: 50,
-                    backgroundColor: status === 1 ? '#0E4DA4' : 'gray',
+                    backgroundColor: status ? '#0E4DA4' : 'gray',
                     borderRadius: 25,
                     justifyContent: 'center',
                     alignItems: 'center',
-                }}>
+                }}
+                onPress={onOffHandle}
+            >
                 <AntDesign
                     name={'poweroff'}
                     style={{fontSize: 25, color: status === 1 ? 'white' : 'black'}}
