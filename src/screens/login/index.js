@@ -4,7 +4,7 @@ import {HeaderLogin} from '../../assets';
 import {styles} from './style';
 import {BaseBtn} from '../../components/baseBtn';
 import userApi from '../../service/api/userApi';
-import prgMqtt from "./MqttLog";
+import prgMqtt from "../../service/mqtt/MqttLog";
 
 export const Login = ({navigation}) => {
   const [phone, setPhone] = useState('')
@@ -56,7 +56,7 @@ export const Login = ({navigation}) => {
         </View>
       </View>
 
-      <BaseBtn onPress={() => prgMqtt.client.publish('WORLD','hello')} title={'test'}/>
+      <BaseBtn title={'ĐĂNG NHẬP'} onPress={handleLogin} />
     </View>
   );
 };

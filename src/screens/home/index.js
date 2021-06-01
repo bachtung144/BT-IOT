@@ -7,7 +7,7 @@ import {ItemAddDevice} from "../../components/itemAddDevice";
 import OfflineNotification from "../../components/OfflineNotification";
 import userApi from "../../service/api/userApi";
 import listRoomApi from "../../service/api/listRoomApi";
-import prgMqtt from "../login/MqttLog";
+import prgMqtt from "../../service/mqtt/MqttLog";
 
 export const Home = ({navigation}) => {
   const [selectedValue, setSelectedValue] = useState(null);
