@@ -4,7 +4,6 @@ import {HeaderLogin} from '../../assets';
 import {styles} from './style';
 import {BaseBtn} from '../../components/baseBtn';
 import userApi from '../../service/api/userApi';
-import prgMqtt from "../../service/mqtt/MqttLog";
 
 export const Login = ({navigation}) => {
   const [phone, setPhone] = useState('')
@@ -25,10 +24,6 @@ export const Login = ({navigation}) => {
       console.log('Failed to login: ', error);
     }
   };
-
-  useEffect(() => {
-    prgMqtt()
-  },[])
 
   return (
     <View style={{flex: 1}}>
