@@ -46,9 +46,7 @@ react-native run-ios
 * [npm](https://www.npmjs.com/) - Node package manager
 
 ## Usage 🚀🚀🚀
-When you see this you can use this account to test :
-* phone: 1234
-* pass: 1234
+When you see this you can use this account to test : 1234/1234
   ![login](https://i.ibb.co/9h4ngYh/ng-nh-p.png=150x100)
 ## Acknowledgments
 * Hat tip to anyone whose code was used
