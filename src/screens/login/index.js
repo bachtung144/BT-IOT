@@ -4,6 +4,7 @@ import {HeaderLogin} from '../../assets';
 import {styles} from './style';
 import {BaseBtn} from '../../components/baseBtn';
 import userApi from '../../service/api/userApi';
+import {connectSocket} from "../../service/socket/__Socket";
 
 export const Login = ({navigation}) => {
   const [phone, setPhone] = useState('')
@@ -24,6 +25,10 @@ export const Login = ({navigation}) => {
       console.log('Failed to login: ', error);
     }
   };
+
+  // useEffect(()=>{
+  //   connectSocket();
+  // },[])
 
   return (
     <View style={{flex: 1}}>
