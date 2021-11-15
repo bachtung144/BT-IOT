@@ -1,8 +1,9 @@
 import axios from 'axios';
 import queryString from 'query-string';
+import {domain} from "../domain";
 
 const axiosClient = axios.create({
-  baseURL: 'https://441de091fa28.ngrok.io/api',
+  baseURL: `${domain}/api`,
   headers: {
     'content-type': 'application/json',
   },
