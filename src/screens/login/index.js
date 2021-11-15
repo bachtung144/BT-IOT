@@ -3,15 +3,18 @@ import {View, Text, Image, TextInput} from 'react-native';
 import {HeaderLogin} from '../../assets';
 import {styles} from './style';
 import {BaseBtn} from '../../components/baseBtn';
-import userApi from '../../service/api/userApi';
+import userApi from '../../service/api/user';
 import {connectSocket, emit} from "../../service/socket/__Socket";
+import {useDispatch} from "react-redux";
+import {storeUser} from "../../states/actions/user";
 
 export const Login = ({navigation}) => {
   const [phone, setPhone] = useState('')
   const [password,setPassword] = useState('')
+  const dispatch = useDispatch();
 
   const handleLogin = async () => {
-    emit('Client-list-devices')
+    // emit('Client-list-devices')
     try {
       let params = {
         phone: phone,
@@ -20,6 +23,7 @@ export const Login = ({navigation}) => {
       const response = await userApi.login(params);
       const {token} = response;
       if (token) {
+        dispatch(storeUser(response))
         return navigation.navigate('HomeTab');
       }
     } catch (error) {

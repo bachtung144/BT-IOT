@@ -4,7 +4,7 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import Feather from "react-native-vector-icons/Feather";
 import AntDesign from "react-native-vector-icons/AntDesign";
 
-export const ItemDevice = ({device, status, type, handleNavigate, onOffHandle}) => (
+export const ItemDevice = ({device, status, handleNavigate, onOffHandle}) => (
     <TouchableOpacity
         style={{
             height: 120,
@@ -36,23 +36,17 @@ export const ItemDevice = ({device, status, type, handleNavigate, onOffHandle}) 
                 marginTop: 10,
                 marginLeft: 5,
             }}>
-            {
-                {
-                    Door: <MaterialCommunityIcons name={'door'} style={{fontSize: 70}} />,
-                    TV: (
+
                         <MaterialCommunityIcons
                             name={'television'}
                             style={{fontSize: 70}}
                         />
-                    ),
-                    Air: <Feather name={'airplay'} style={{fontSize: 70}} />,
-                }[type]
-            }
+
             <TouchableOpacity
                 style={{
                     height: 50,
                     width: 50,
-                    backgroundColor: status ? '#0E4DA4' : 'gray',
+                    backgroundColor: status === 1 ? '#0E4DA4' : 'gray',
                     borderRadius: 25,
                     justifyContent: 'center',
                     alignItems: 'center',

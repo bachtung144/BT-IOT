@@ -1,12 +1,12 @@
 import axiosClient from '../axios/axiosClient';
 
-class ListRoomApi {
+class Room {
     getAll = params => {
-        const url = '/listRoom';
+        const url = '/room';
         return axiosClient.get(url, {params});
     };
 }
 
-const listRoomApi = new ListRoomApi();
+const roomApi = new Room();
 
-export default listRoomApi;
+export default roomApi;

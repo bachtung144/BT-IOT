@@ -1,16 +1,15 @@
-import {STORE_LISTDEVICES} from "../../actions/listDevices/types";
+import {STORE_USER} from "../../actions/user/types";
 
 const myState = {
-    listDevices: {},
+    user: {},
 };
 
 const reducers = (state = myState, { payload, type }) => {
     switch (type) {
-        case STORE_LISTDEVICES:
-            console.warn('store history', payload)
+        case STORE_USER:
             return {
                 ...state,
-                listDevices: payload,
+                user: payload,
             };
         default:
             return state;

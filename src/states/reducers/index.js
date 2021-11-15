@@ -1,7 +1,9 @@
 import { combineReducers } from "redux";
 
-import listDevicesReducer from "./listDevices/index";
+import listDeviceReducer from "./listDevice/index";
+import userReducer from "./user/index";
 
 export default combineReducers({
-    listDevices: listDevicesReducer,
+    listDevice: listDeviceReducer,
+    user: userReducer
 });

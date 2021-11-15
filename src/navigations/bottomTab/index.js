@@ -38,7 +38,7 @@ export const HomeTab = () => {
       <Tab.Screen
         name="Script"
         component={Script}
-        options={{title: 'Kịch bản'}}
+        options={{title: 'Quyền hạn'}}
       />
       <Tab.Screen
         name="Setting"

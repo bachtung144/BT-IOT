@@ -1,12 +1,12 @@
 import axiosClient from '../axios/axiosClient';
 
-class UserApi {
+class User {
   login = params => {
-    const url = '/users/login';
+    const url = '/user/login';
     return axiosClient.get(url, {params});
   };
 }
 
-const userApi = new UserApi();
+const userApi = new User();
 
 export default userApi;
