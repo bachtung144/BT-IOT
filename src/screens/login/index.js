@@ -4,13 +4,14 @@ import {HeaderLogin} from '../../assets';
 import {styles} from './style';
 import {BaseBtn} from '../../components/baseBtn';
 import userApi from '../../service/api/userApi';
-import {connectSocket} from "../../service/socket/__Socket";
+import {connectSocket, emit} from "../../service/socket/__Socket";
 
 export const Login = ({navigation}) => {
   const [phone, setPhone] = useState('')
   const [password,setPassword] = useState('')
 
   const handleLogin = async () => {
+    emit('Client-list-devices')
     try {
       let params = {
         phone: phone,
@@ -26,9 +27,10 @@ export const Login = ({navigation}) => {
     }
   };
 
-  // useEffect(()=>{
-  //   connectSocket();
-  // },[])
+  useEffect(()=>{
+    let isConnect =  connectSocket();
+    console.log("isConnect => ", isConnect)
+  },[])
 
   return (
     <View style={{flex: 1}}>

@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 
-import listRoomReducer from "./listRoom/index";
+import listDevicesReducer from "./listDevices/index";
 
 export default combineReducers({
-    listRoom: listRoomReducer,
+    listDevices: listDevicesReducer,
 });

@@ -1,6 +1,6 @@
 import io from 'socket.io-client';
 import {domain} from "../domain";
-import {storeListRoom} from "../../states/actions/listRoom";
+import {storeListRoom} from "../../states/actions/listDevices";
 import {store} from "../../states/store";
 const domain_socket = domain;
 
@@ -56,7 +56,7 @@ function onEvent() {
         _socket = false;
     });
 
-    _socket.on('Server-sent-data', response => {
+    _socket.on('Server-list-devices', response => {
         let data = JSON.parse(response);
         store.dispatch(storeListRoom(data))
     });
