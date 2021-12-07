@@ -2,7 +2,7 @@ import React from 'react';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import {Home} from '../../screens/home';
 import {Setting} from '../../screens/setting';
-import {Script} from '../../screens/script';
+import {Role} from '../../screens/role';
 import {TabHomeNavigator} from './tabHome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
@@ -37,7 +37,7 @@ export const HomeTab = () => {
       />
       <Tab.Screen
         name="Script"
-        component={Script}
+        component={Role}
         options={{title: 'Quyền hạn'}}
       />
       <Tab.Screen
