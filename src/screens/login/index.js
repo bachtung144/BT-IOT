@@ -4,7 +4,6 @@ import {HeaderLogin} from '../../assets';
 import {styles} from './style';
 import {BaseBtn} from '../../components/baseBtn';
 import userApi from '../../service/api/user';
-import {connectSocket, emit} from "../../service/socket/__Socket";
 import {useDispatch} from "react-redux";
 import {storeUser} from "../../states/actions/user";
 
@@ -14,7 +13,6 @@ export const Login = ({navigation}) => {
   const dispatch = useDispatch();
 
   const handleLogin = async () => {
-    // emit('Client-list-devices')
     try {
       let params = {
         phone: phone,
@@ -30,11 +28,6 @@ export const Login = ({navigation}) => {
       console.log('Failed to login: ', error);
     }
   };
-
-  useEffect(()=>{
-    let isConnect =  connectSocket();
-    console.log("isConnect => ", isConnect)
-  },[])
 
   return (
     <View style={{flex: 1}}>

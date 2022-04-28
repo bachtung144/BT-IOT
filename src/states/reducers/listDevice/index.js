@@ -7,7 +7,6 @@ const myState = {
 const reducers = (state = myState, { payload, type }) => {
     switch (type) {
         case STORE_LISTDEVICE:
-            console.warn('store list dev', payload)
             return {
                 ...state,
                 listDevice: payload,
