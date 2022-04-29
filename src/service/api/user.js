@@ -3,7 +3,7 @@ import axiosClient from '../axios/axiosClient';
 class User {
   login = params => {
     const url = '/user/login';
-    return axiosClient.get(url, {params});
+    return axiosClient.post(url, params);
   };
 }
 

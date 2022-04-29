@@ -3,13 +3,13 @@ import {Text, TouchableOpacity, View} from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import AntDesign from "react-native-vector-icons/AntDesign";
 
-export const ItemDevice = ({device, status, handleNavigate, onOffHandle, type}) => {
+export const ItemDevice = ({device, status, handleNavigate, onOffHandle}) => {
     return (
         <TouchableOpacity
             style={{
                 height: 120,
-                width: '100%',
-                marginRight: 33,
+                marginHorizontal:10,
+                width:'45%',
                 backgroundColor: 'white',
                 shadowColor: '#000',
                 shadowOffset: {
@@ -37,42 +37,30 @@ export const ItemDevice = ({device, status, handleNavigate, onOffHandle, type}) 
                     marginTop: 10,
                     marginLeft: 5,
                 }}>
-                {
-                    type === '2c' ?
+
                         <MaterialCommunityIcons
                             name={'lamp'}
                             style={{fontSize: 70, color: status === 1 ? '#0E4DA4' : 'black'}}
                         />
-                        :
-                        <MaterialCommunityIcons
-                            name={'lamp'}
-                            style={{fontSize: 40, color: status === 1 ? '#0E4DA4' : 'black'}}
-                        />
-                }
+
 
                 <TouchableOpacity
                     style={{
-                        height: type === '2c' ? 50 : 30,
-                        width: type === '2c' ? 50 : 30,
+                        height:50,
+                        width: 50,
                         backgroundColor: status === 1 ? '#0E4DA4' : 'gray',
-                        borderRadius: type === '2c' ? 25 : 15,
+                        borderRadius:25,
                         justifyContent: 'center',
                         alignItems: 'center',
                     }}
                     onPress={onOffHandle}
                 >
-                    {
-                        type === '2c' ?
+
                             <AntDesign
                                 name={'poweroff'}
                                 style={{fontSize: 25, color: status === 1 ? 'white' : 'black'}}
                             />
-                            :
-                            <AntDesign
-                                name={'poweroff'}
-                                style={{fontSize: 10, color: status === 1 ? 'white' : 'black'}}
-                            />
-                    }
+
                 </TouchableOpacity>
             </View>
         </TouchableOpacity>

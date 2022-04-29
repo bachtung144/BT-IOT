@@ -11,7 +11,6 @@ const axiosClient = axios.create({
 });
 
 axiosClient.interceptors.request.use(async config => {
-  // console.warn('con',config)
   return config;
 });
 
@@ -24,7 +23,6 @@ axiosClient.interceptors.response.use(
   },
   error => {
     // Handle errors
-    // console.warn('errr',error)
     throw error;
   },
 );
