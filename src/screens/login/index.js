@@ -1,16 +1,14 @@
-import React,{useState,useEffect} from 'react';
-import {View, Text, Image, TextInput} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, Text, Image, TextInput, Button} from 'react-native';
 import {HeaderLogin} from '../../assets';
 import {styles} from './style';
 import {BaseBtn} from '../../components/baseBtn';
 import userApi from '../../service/api/user';
-import {useDispatch} from "react-redux";
-import {storeUser} from "../../states/actions/user";
+import {storeData} from '../../service/localStorage';
 
 export const Login = ({navigation}) => {
-  const [phone, setPhone] = useState('')
-  const [password,setPassword] = useState('')
-  const dispatch = useDispatch();
+  const [phone, setPhone] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleLogin = async () => {
     try {
@@ -21,11 +19,17 @@ export const Login = ({navigation}) => {
       const response = await userApi.login(params);
       const {token} = response;
       if (token) {
-        dispatch(storeUser(response))
-        return navigation.navigate('HomeTab');
+        let storeToken = await storeData('token', token);
+        let storeIdApart = await storeData(
+          'idApartment',
+          response?.id_apartment,
+        );
+        if (storeToken && storeIdApart) {
+          return navigation.navigate('HomeTab');
+        }
       }
     } catch (error) {
-      console.log('Failed to login: ', error);
+      alert(error.response?.data?.msg);
     }
   };
 
@@ -47,10 +51,10 @@ export const Login = ({navigation}) => {
         <View>
           <Text style={{marginBottom: 10}}>Mật khẩu</Text>
           <TextInput
-              style={styles.txtInputPass}
-              placeholder={'Mật khẩu'}
-              onChangeText={setPassword}
-              secureTextEntry={true}
+            style={styles.txtInputPass}
+            placeholder={'Mật khẩu'}
+            onChangeText={setPassword}
+            secureTextEntry={true}
           />
         </View>
       </View>
