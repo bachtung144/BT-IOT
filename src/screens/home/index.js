@@ -16,7 +16,6 @@ import {getData} from '../../service/localStorage';
 export const Home = () => {
   const [listRoom, setListRoom] = useState(null);
   const [selectedValue, setSelectedValue] = useState(null);
-  const [apartment, setApartment] = useState(null);
   const [listDevice, setListDevice] = useState(null);
 
   const handleListRoom = async data => {
@@ -36,13 +35,6 @@ export const Home = () => {
     const {devices} = response;
     if (devices) {
       setListDevice(devices);
-    }
-  };
-
-  const getInfoApartment = async data => {
-    const response = await apartmentApi.getInfo(data);
-    if (response) {
-      setApartment(response);
     }
   };
 
@@ -74,10 +66,9 @@ export const Home = () => {
   );
 
   const handleApartAndRoom = async () => {
-    await getData('idApartment')
+    await getData('apartmentId')
       .then(data => {
         if (data) {
-          getInfoApartment(data);
           handleListRoom(data);
         }
       })
@@ -86,15 +77,15 @@ export const Home = () => {
 
   return (
     <View style={{flex: 1}}>
-      <View style={{height: '10%', backgroundColor: '#C4C4C4'}}>
-        <Text style={{marginLeft: 20, marginTop: 5}}>
-          Tên: {apartment?.apartment}
-        </Text>
-        <Text style={{marginLeft: 20}}>
-          Địa chỉ: {apartment?.address}, Tòa nhà: {apartment?.building}, Quận:{' '}
-          {apartment?.district},{apartment?.city}
-        </Text>
-      </View>
+      {/*<View style={{height: '10%', backgroundColor: '#C4C4C4'}}>*/}
+      {/*  <Text style={{marginLeft: 20, marginTop: 5}}>*/}
+      {/*    Tên: {apartment?.apartment}*/}
+      {/*  </Text>*/}
+      {/*  <Text style={{marginLeft: 20}}>*/}
+      {/*    Địa chỉ: {apartment?.address}, Tòa nhà: {apartment?.building}, Quận:{' '}*/}
+      {/*    {apartment?.district},{apartment?.city}*/}
+      {/*  </Text>*/}
+      {/*</View>*/}
       {listRoom ? (
         <View style={styles.ctnPicker}>
           <Picker onValueChange={onValueChange}>

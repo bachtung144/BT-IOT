@@ -1,7 +1,7 @@
 import {STORE_USER} from "../../actions/user/types";
 
 const myState = {
-    user: {},
+    user: null,
 };
 
 const reducers = (state = myState, { payload, type }) => {

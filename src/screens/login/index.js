@@ -17,14 +17,19 @@ export const Login = ({navigation}) => {
         password: password,
       };
       const response = await userApi.login(params);
+      console.log(response)
       const {token} = response;
       if (token) {
         let storeToken = await storeData('token', token);
-        let storeIdApart = await storeData(
-          'idApartment',
+        let storeApartId = await storeData(
+          'apartmentId',
           response?.id_apartment,
         );
-        if (storeToken && storeIdApart) {
+        let storeUserId = await storeData(
+            'userId',
+            response?.id,
+        );
+        if (storeToken && storeApartId && storeUserId ) {
           return navigation.navigate('HomeTab');
         }
       }
