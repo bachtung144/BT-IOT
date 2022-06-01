@@ -4,7 +4,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {ButtonDelete} from '../../components/btnDelete';
 import {getData, removeUser} from '../../service/localStorage';
 import {styles} from './style';
-import {storeUser} from "../../states/actions/user";
+import {storeStatus} from "../../states/actions/user";
 import {useDispatch} from "react-redux";
 import apartmentApi from "../../service/api/apartment";
 import userApi from "../../service/api/user";
@@ -12,12 +12,12 @@ import userApi from "../../service/api/user";
 export const Setting = ({navigation}) => {
     const dispatch = useDispatch();
     const [user, setUser] = useState(null);
+
   const logOut = async () => {
     await removeUser('token')
       .then(data => {
         if (data) {
-          return navigation.navigate('Login');
-          //   dispatch(storeUser(false))
+            dispatch(storeStatus(false))
         }
       })
       .catch(err => console.log(err));

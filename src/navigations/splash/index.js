@@ -1,24 +1,26 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import React, {useEffect} from 'react';
 import {Splash} from '../../screens/splash';
-import {getData} from "../../service/localStorage";
-import {storeUser} from "../../states/actions/user";
 import {useDispatch} from "react-redux";
+import {getData} from "../../service/localStorage";
+import {storeStatus} from "../../states/actions/user";
 
 const SplashStack = createStackNavigator();
 
 export const SplashNavigator = () => {
     const dispatch = useDispatch();
-    const test = async () => {
+
+    const checkLogin = async () => {
         await getData("token")
             .then(data => {
-                dispatch(storeUser(data))
+                dispatch(storeStatus(data))
             })
             .catch(err => console.log(err))
     }
     useEffect(() => {
-        test()
+        checkLogin()
     }, []);
+
   return (
     <SplashStack.Navigator initialRouteName="Splash">
       <SplashStack.Screen

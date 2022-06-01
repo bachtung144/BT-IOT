@@ -1,8 +1,8 @@
-import {STORE_USER} from "./types";
+import {STORE_STATUS} from "./types";
 
-export const storeUser = (payload) => {
+export const storeStatus = (payload) => {
     return {
-        type: STORE_USER,
+        type: STORE_STATUS,
         payload
     }
 }

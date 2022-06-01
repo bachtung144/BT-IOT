@@ -5,6 +5,7 @@ class Room {
         const url = '/rooms';
         return axiosClient.get(url, {params});
     };
+
     getDevices = params => {
         const url = `/rooms/${params}/devices`;
         return axiosClient.get(url);

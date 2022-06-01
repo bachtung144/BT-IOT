@@ -5,7 +5,7 @@ import {RootUser} from "./root";
 import {ChildUser} from "./child";
 
 export const Role = () => {
-    const user = useSelector(state => state?.user?.user);
+    const user = useSelector(state => state?.user?.signedIn);
   return (
       <View>
           {
