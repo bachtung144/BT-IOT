@@ -1,15 +1,15 @@
-import {STORE_USER} from "../../actions/user/types";
+import {STORE_STATUS} from "../../actions/user/types";
 
 const myState = {
-    user: {},
+    signedIn: false,
 };
 
 const reducers = (state = myState, { payload, type }) => {
     switch (type) {
-        case STORE_USER:
+        case STORE_STATUS:
             return {
                 ...state,
-                user: payload,
+                signedIn: payload,
             };
         default:
             return state;

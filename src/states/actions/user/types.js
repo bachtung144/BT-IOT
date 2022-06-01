@@ -1,1 +1,1 @@
-export const STORE_USER = 'STORE_USER'
+export const STORE_STATUS = 'STORE_STATUS'

@@ -5,10 +5,13 @@ import {styles} from './style';
 import {BaseBtn} from '../../components/baseBtn';
 import userApi from '../../service/api/user';
 import {storeData} from '../../service/localStorage';
+import {useDispatch} from "react-redux";
+import {storeStatus} from "../../states/actions/user";
 
-export const Login = ({navigation}) => {
+export const Login = () => {
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
 
   const handleLogin = async () => {
     try {
@@ -20,12 +23,16 @@ export const Login = ({navigation}) => {
       const {token} = response;
       if (token) {
         let storeToken = await storeData('token', token);
-        let storeIdApart = await storeData(
-          'idApartment',
+        let storeApartId = await storeData(
+          'apartmentId',
           response?.id_apartment,
         );
-        if (storeToken && storeIdApart) {
-          return navigation.navigate('HomeTab');
+        let storeUserId = await storeData(
+            'userId',
+            response?.id,
+        );
+        if (storeToken && storeApartId && storeUserId ) {
+          dispatch(storeStatus(true))
         }
       }
     } catch (error) {

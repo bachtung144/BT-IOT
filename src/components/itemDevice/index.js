@@ -10,7 +10,6 @@ export const ItemDevice = ({device, status, handleNavigate, onOffHandle}) => {
                 height: 120,
                 marginHorizontal:10,
                 width:'45%',
-                backgroundColor: 'white',
                 shadowColor: '#000',
                 shadowOffset: {
                     width: 0,
@@ -19,6 +18,8 @@ export const ItemDevice = ({device, status, handleNavigate, onOffHandle}) => {
                 shadowOpacity: 0.27,
                 shadowRadius: 4.65,
                 elevation: 6,
+                backgroundColor:'#FFF',
+                borderWidth:1.5,
                 borderRadius: 5,
                 marginTop:30
             }}
