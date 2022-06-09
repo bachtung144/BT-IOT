@@ -1,8 +1,6 @@
 import React from 'react';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
-import {Home} from '../../screens/home';
 import {Setting} from '../../screens/setting';
-import {Role} from '../../screens/role';
 import {TabHomeNavigator} from './tabHome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
@@ -17,13 +15,10 @@ export const HomeTab = () => {
 
           if (route.name === 'TabHomeNavigator') {
             iconName = 'home';
-          } else if (route.name === 'Script') {
-            iconName = 'book';
-          } else if (route.name === 'Setting') {
+          }  else if (route.name === 'Setting') {
             iconName = 'user';
           }
 
-          // You can return any component that you like here!
           return <AntDesign name={iconName} size={25} color={color} />;
         },
       })}
@@ -34,11 +29,6 @@ export const HomeTab = () => {
         name="TabHomeNavigator"
         component={TabHomeNavigator}
         options={{title: 'Trang chủ'}}
-      />
-      <Tab.Screen
-        name="Script"
-        component={Role}
-        options={{title: 'Quyền hạn'}}
       />
       <Tab.Screen
         name="Setting"
