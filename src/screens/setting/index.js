@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {View, Text, SafeAreaView, TextInput, ScrollView, TouchableOpacity, Button, Alert} from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {ButtonDelete} from '../../components/btnDelete';
-import {getData, removeUser} from '../../service/localStorage';
+import {getData, removeItem} from '../../service/localStorage';
 import {styles} from './style';
 import {storeStatus} from "../../states/actions/user";
 import {useDispatch} from "react-redux";
@@ -16,7 +16,7 @@ export const Setting = ({navigation}) => {
     const [changePass, setChangePass] = React.useState(false);
 
   const logOut = async () => {
-    await removeUser('token')
+    await removeItem('token')
       .then(data => {
         if (data) {
             dispatch(storeStatus(false))

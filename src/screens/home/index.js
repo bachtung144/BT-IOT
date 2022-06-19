@@ -18,7 +18,7 @@ export const Home = () => {
 
   const handleListRoom = async data => {
     let params = {
-      idApartment: data,
+      apartmentId: data,
     };
     const response = await roomApi.getAll(params);
     const {rooms} = response;
