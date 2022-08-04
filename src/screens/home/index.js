@@ -16,19 +16,19 @@ export const Home = () => {
   const [selectedValue, setSelectedValue] = useState(null);
   const [listDevice, setListDevice] = useState(null);
 
-  const handleListRoom = async data => {
+  const getListRoom = async apartId => {
     let params = {
-      idApartment: data,
+      apartmentId: apartId,
     };
     const response = await roomApi.getAll(params);
     const {rooms} = response;
     if (rooms) {
       setListRoom([...rooms]);
-      await handleListDeviceInRoom(rooms[0]?._id);
+      await getListDeviceInRoom(rooms[0]?._id);
     }
   };
 
-  const handleListDeviceInRoom = async roomId => {
+  const getListDeviceInRoom = async roomId => {
     const response = await roomApi.getDevices(roomId);
     const {devices} = response;
     if (devices) {
@@ -36,9 +36,9 @@ export const Home = () => {
     }
   };
 
-  const onValueChange = itemValue => {
-    setSelectedValue(itemValue);
-    handleListDeviceInRoom(itemValue);
+  const onValueChange = value => {
+    setSelectedValue(value);
+    getListDeviceInRoom(value);
   };
 
   const controlDevice = async (deviceId, data) => {
@@ -59,18 +59,18 @@ export const Home = () => {
     />
   );
 
-  const handleRoomAndDevice = async () => {
+  const handleList = async () => {
     await getData('apartmentId')
       .then(data => {
         if (data) {
-          handleListRoom(data);
+          getListRoom(data);
         }
       })
       .catch(err => console.log(err));
   };
 
   useEffect(() => {
-    handleRoomAndDevice();
+    handleList();
   }, []);
 
   return (

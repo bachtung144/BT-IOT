@@ -10,6 +10,11 @@ class User {
     const url = `/user/${params}`;
     return axiosClient.get(url);
   }
+
+  changePass = params => {
+    const url = `/user/change-password`;
+    return axiosClient.put(url, params);
+  }
 }
 
 const userApi = new User();

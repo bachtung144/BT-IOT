@@ -25,7 +25,7 @@ export const Login = () => {
         let storeToken = await storeData('token', token);
         let storeApartId = await storeData(
           'apartmentId',
-          response?.id_apartment,
+          response?.apartment_id,
         );
         let storeUserId = await storeData(
             'userId',
