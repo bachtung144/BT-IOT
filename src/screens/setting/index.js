@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, SafeAreaView, TextInput, ScrollView, TouchableOpacity, Button, Alert} from 'react-native';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {ButtonDelete} from '../../components/btnDelete';
 import {getData, removeItem} from '../../service/localStorage';
@@ -77,7 +78,7 @@ export const Setting = ({navigation}) => {
       <View style={{marginVertical:20}}>
           <TouchableOpacity style={styles.line} onPress={() => setChangePass(!changePass)}>
               <Text style={{fontSize: 20}}>Thay đổi mật khẩu</Text>
-              <FontAwesome name={'angle-right'} style={{fontSize: 40}} />
+              <AntDesign name={'down'} style={{fontSize: 30}} />
           </TouchableOpacity>
 
           {
